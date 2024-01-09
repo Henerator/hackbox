@@ -12,7 +12,11 @@ RUN apk add --update --no-cache nmap-scripts
 
 # install packages set with
 # - telnet
+# - ftpd server
 RUN apk add --update --no-cache busybox-extras
+
+# install ftp client
+RUN apk add --update --no-cache lftp
 
 COPY /scripts/ /scripts/
 
