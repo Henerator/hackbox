@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  linux-vm:
+    image: linux-vm
+    container_name: linux-vm
+    privileged: true
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    command: sh
+    volumes:
+      - ./configs:/configs
+      # - ./scripts:/scripts

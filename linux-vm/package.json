@@ -1,0 +1,13 @@
+{
+  "name": "linux-vm",
+  "version": "1.0.0",
+  "description": "docker project to run linux",
+  "main": "",
+  "scripts": {
+    "build-image": "docker build -t linux-vm .",
+    "run": "docker compose up",
+    "attach": "docker-compose exec linux-vm sh"
+  },
+  "author": "roman_makarov",
+  "license": "ISC"
+}
