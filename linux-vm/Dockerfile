@@ -1,27 +1,18 @@
-FROM alpine:3.18.5
+FROM ubuntu:24.04
 
-# update packages
-RUN apk update
-
-# install openvpn
-RUN apk add --update --no-cache openvpn
-
-# install nmap and dependencies
-RUN apk add --update --no-cache nmap
-RUN apk add --update --no-cache nmap-scripts
-
-# install packages set with
-# - telnet
-# - ftpd server
-RUN apk add --update --no-cache busybox-extras
-
-# install ftp client
-RUN apk add --update --no-cache lftp
+# update and install packages
+RUN apt-get update \
+  && apt-get install -y iputils-ping \
+  && apt-get install -y openvpn \
+  && apt-get install -y nmap \
+  && apt-get install -y telnet \
+  && apt-get install -y lftp \
+  && apt-get install -y smbclient \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY /scripts/ /scripts/
 
 # patch ipv6 support
-RUN chmod +x /scripts/patch-sysctl-ipv6.sh
 RUN /scripts/patch-sysctl-ipv6.sh
 
 # connect to vpn on startup

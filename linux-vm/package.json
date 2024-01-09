@@ -6,7 +6,7 @@
   "scripts": {
     "build-image": "docker build -t linux-vm .",
     "run": "docker compose up",
-    "attach": "docker-compose exec linux-vm sh"
+    "attach": "docker-compose exec linux-vm bash"
   },
   "author": "roman_makarov",
   "license": "ISC"

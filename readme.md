@@ -57,3 +57,52 @@ services, as it adds another layer of distinction
   - response code `230` - the server sends a 230 code in response to a command that has provided sufficient credentials to the server to grant the user access to the FTP server
 - user `anonymous` user name
 - use `get` command to download file
+
+# Dancing
+
+> *SMB* (Server Message Block) - communication
+protocol provides shared access to files, printers, and serial ports between endpoints on a network  
+> port **445 TCP**  
+> most often used with **NetBIOS** over TCP/IP (**NBT**)
+
+
+> Using the SMB protocol an application **can access files at a remote server**, along with other resources such as printers
+
+## OSI model
+
+1. Physical
+1. Data Link
+1. Network
+1. Transport
+1. Session
+1. Presentation
+1. Application
+
+## Linux scripts
+
+- change shell
+  - chsh -s /bin/bash
+
+## Research
+
+- scan open ports
+  - `nmap -sV {IP}`
+  - open ports
+    - 135/tcp open  msrpc         Microsoft Windows RPC
+    - 139/tcp open  netbios-ssn   Microsoft Windows netbios-ssn
+    - 445/tcp open  microsoft-ds?
+  - OS info
+    - Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+- install smb client
+- connect to target machine
+  - `smbclient -L {IP}`
+    - `-L` - list shared resources
+    - shown shares
+        - ADMIN$          Disk      Remote Admin
+        - C$              Disk      Default share
+        - IPC$            IPC       Remote IPC
+        - WorkShares      Disk
+  - try shares
+    - `smbclient \\\\{IP}\\ADMIN$`
+  - download file
+    - `get name`

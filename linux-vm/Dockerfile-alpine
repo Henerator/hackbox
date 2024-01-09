@@ -1,0 +1,29 @@
+FROM alpine:3.18.5
+
+# update packages
+RUN apk update
+# RUN apk upgrade --no-cache
+
+# install openvpn
+RUN apk add --no-cache openvpn
+
+# install nmap and dependencies
+RUN apk add --no-cache nmap
+RUN apk add --no-cache nmap-scripts
+
+# install packages set with
+# - telnet
+# - ftpd server
+RUN apk add --no-cache busybox-extras
+
+# install ftp client
+RUN apk add --no-cache lftp
+
+COPY /scripts/ /scripts/
+
+# patch ipv6 support
+RUN chmod +x /scripts/patch-sysctl-ipv6.sh
+RUN /scripts/patch-sysctl-ipv6.sh
+
+# connect to vpn on startup
+ENTRYPOINT ["sh", "/scripts/connect-to-vpn.sh"]
