@@ -106,3 +106,32 @@ protocol provides shared access to files, printers, and serial ports between end
     - `smbclient \\\\{IP}\\ADMIN$`
   - download file
     - `get name`
+
+# Redeemer
+
+## Notes
+
+> **Redis** (**RE**mote **DI**ctionary **S**erver) - 'in-memory' database.  
+> NoSQL key-value data store used as a database, cache, and message broker.  
+> Typically used to cache data that is frequently requested for quick retrieval
+
+## Research
+
+- scan open ports
+  - `nmap -p- -sV {IP}`
+    - `-p-` - scan all ports from 1 to 65535
+  - open ports
+    - 6379/tcp open  redis   Redis key-value store 5.0.7
+  - install redis-cli
+    - `apt install redis-tools`
+  - connect to target machine
+    - `redis-cli -h {IP}`
+    - `info` - show statistics
+      - `db0` - one database with index `0`
+    - `select 0` - select database with index `0`
+    - `keys *` - list all the keys in the database
+      - "stor"
+      - "temp"
+      - "numb"
+      - "flag"
+    - `get {key}` - show value for the key
