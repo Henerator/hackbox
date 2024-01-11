@@ -135,3 +135,15 @@ protocol provides shared access to files, printers, and serial ports between end
       - "numb"
       - "flag"
     - `get {key}` - show value for the key
+
+# Appointment
+
+## Research
+
+- scan open ports
+  - `nmap -sV {IP}`
+  - open ports
+    - 80/tcp open  http
+    - Apache httpd 2.4.38 ((Debian))
+- open {IP} in browser
+- try `admin'#` login
